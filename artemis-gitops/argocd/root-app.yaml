@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: artemis
+  namespace: argocd
+spec:
+  project: artemis
+
+  source:
+    repoURL: https://github.com/spoved-aws/artemis-gitops.git
+    targetRevision: main
+    path: argocd/applications   # 👈 points to child apps
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: argocd
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

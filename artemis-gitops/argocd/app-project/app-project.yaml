@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: artemis
+  namespace: argocd
+spec:
+  description: Artemis applications
+
+  sourceRepos:
+    - https://github.com/spoved-aws/artemis-gitops.git
+
+  destinations:
+    - namespace: artemis-dev
+      server: https://kubernetes.default.svc
+    - namespace: artemis-staging
+      server: https://kubernetes.default.svc
+    - namespace: artemis-prod
+      server: https://kubernetes.default.svc
+
+  clusterResourceWhitelist:
+    - group: '*'
+      kind: '*'

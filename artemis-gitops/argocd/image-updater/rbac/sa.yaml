@@ -1,0 +1,23 @@
+# kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj-labs/argocd-image-updater/stable/config/install.yaml
+
+# https://argocd-image-updater.readthedocs.io/en/stable/install/installation/
+
+
+# Namespace:
+# - argocd
+
+# ServiceAccount:
+# - argocd-image-updater
+
+# RBAC:
+# - Role: argocd-image-updater
+# - RoleBinding: argocd-image-updater
+# - ClusterRole: argocd-image-updater
+# - ClusterRoleBinding: argocd-image-updater
+
+# Configuration:
+# - ConfigMap: argocd-image-updater-config
+# - Secret: argocd-image-updater-secret
+
+# Workload:
+# - Deployment: argocd-image-updater

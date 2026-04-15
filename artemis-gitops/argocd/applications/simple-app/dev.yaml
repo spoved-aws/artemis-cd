@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: simple-app-dev
+  namespace: argocd
+spec:
+  project: artemis
+
+  source:
+    repoURL: https://github.com/spoved-aws/artemis-gitops.git
+    targetRevision: main
+    path: apps/simple-app/charts
+    helm:
+      valueFiles:
+        - ../dev/values.yaml
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: artemis-dev
+
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+    automated:
+      prune: true
+      selfHeal: true
