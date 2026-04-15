@@ -8,7 +8,7 @@ spec:
   namespace: argocd
 
   applicationRefs:
-    - name: simple-app-dev
+    - namePattern: simple-app-dev
       images:
         - alias: simple-app # --> this is an identifier to image-updater only
           imageName: "kanukhosla10/artemis-simple-app"
@@ -23,6 +23,6 @@ spec:
     method: "git:secret:argocd/git-creds"
     gitConfig:
       repository: "https://github.com/spoved-aws/artemis-cd.git"
-      branch: main
+      branch: "main"
       writeBackTarget: "helmvalues:/apps/simple-app/dev/values.yaml"
-      commitMessage: "chore: update image {{ .OldTag }} → {{ .NewTag }} [skip ci]"
+      commitMessage: "chore(deps): Updating img tag from {{ .OldTag }} to {{ .NewTag }} [skip ci]"
