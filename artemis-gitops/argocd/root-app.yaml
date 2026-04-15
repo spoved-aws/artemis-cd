@@ -7,9 +7,11 @@ spec:
   project: artemis
 
   source:
-    repoURL: https://github.com/spoved-aws/artemis-gitops.git
+    repoURL: https://github.com/spoved-aws/artemis-cd.git
     targetRevision: main
-    path: argocd/applications   # 👈 points to child apps
+    path: artemis-gitops/argocd/applications   # 👈 points to child apps
+    directory:
+      recurse: true
 
   destination:
     server: https://kubernetes.default.svc

@@ -7,7 +7,7 @@ spec:
   project: artemis
 
   source:
-    repoURL: https://github.com/spoved-aws/artemis-gitops.git
+    repoURL: https://github.com/spoved-aws/artemis-cd.git
     targetRevision: main
     path: apps/simple-app/charts
     helm:
