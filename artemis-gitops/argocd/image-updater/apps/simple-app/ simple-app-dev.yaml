@@ -22,7 +22,7 @@ spec:
   writeBackConfig:
     method: "git:secret:argocd/git-creds"
     gitConfig:
-      repository: "https://github.com/spoved-aws/artemis-gitops.git"
+      repository: "https://github.com/spoved-aws/artemis-cd.git"
       branch: main
       writeBackTarget: "helmvalues:/apps/simple-app/dev/values.yaml"
       commitMessage: "chore: update image {{ .OldTag }} → {{ .NewTag }} [skip ci]"
