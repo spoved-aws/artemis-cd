@@ -1,24 +1,17 @@
 replicaCount: 1
-
 image:
   repository: kanukhosla10/artemis-simple-app
   pullPolicy: IfNotPresent
-  tag: "sha-test"
-
+  tag: "sha-19346b3"
 podAnnotations: {}
-
 service:
   name: simple-app
   type: ClusterIP
   containerPort: 80
-
 env:
   # appVersion: sha-test
   environment: "dev"
-
-
 httpRoute:
   hostnames:
-    - "dev.artemis.simple-app.654537853.xyz"
-
+  - "dev.artemis.simple-app.654537853.xyz"
 resources: {}
