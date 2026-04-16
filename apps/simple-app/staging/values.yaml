@@ -2,7 +2,7 @@ replicaCount: 1
 image:
   repository: kanukhosla10/artemis-simple-app
   pullPolicy: IfNotPresent
-  tag: "sha-19346b3"
+  tag: "sha-2d6b8db"
 podAnnotations: {}
 service:
   name: simple-app
