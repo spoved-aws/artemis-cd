@@ -17,4 +17,4 @@ spec:
         value: /
     backendRefs:
     - name: {{ include "simple-app.fullname" . }}
-      port: {{ .Values.service.port }}
+      port: {{ .Values.service.containerPort }}
