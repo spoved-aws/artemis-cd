@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: simple-app-staging
+  namespace: argocd
+spec:
+  project: artemis
+
+  source:
+    repoURL: https://github.com/spoved-aws/artemis-cd.git
+    targetRevision: main
+    path: apps/simple-app/charts
+    helm:
+      valueFiles:
+        - ../staging/values.yaml
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: artemis-staging
+
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+    automated:
+      prune: true
+      selfHeal: true
