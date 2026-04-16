@@ -7,7 +7,7 @@ podAnnotations: {}
 service:
   name: simple-app
   type: ClusterIP
-  containerPort: 80
+  containerPort: 5000
 env:
   # appVersion: sha-test
   environment: "dev"
