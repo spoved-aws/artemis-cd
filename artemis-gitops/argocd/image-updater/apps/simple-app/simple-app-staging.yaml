@@ -1,14 +1,14 @@
 apiVersion: argocd-image-updater.argoproj.io/v1alpha1
 kind: ImageUpdater
 metadata:
-  name: simple-app-dev-updater
+  name: simple-app-staging-updater
   namespace: argocd
 
 spec:
   namespace: argocd
 
   applicationRefs:
-    - namePattern: simple-app-dev
+    - namePattern: simple-app-staging
       images:
         - alias: simple-app # --> this is an identifier to image-updater only
           imageName: "kanukhosla10/artemis-simple-app"
@@ -27,4 +27,4 @@ spec:
     gitConfig:
       repository: "https://github.com/spoved-aws/artemis-cd.git"
       branch: "main"
-      writeBackTarget: "helmvalues:/apps/simple-app/dev/values.yaml"
+      writeBackTarget: "helmvalues:/apps/simple-app/staging/values.yaml"
