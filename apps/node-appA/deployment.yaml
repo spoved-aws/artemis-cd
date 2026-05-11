@@ -17,7 +17,7 @@ spec:
         app: nodejs-app-a
     spec:
       containers:
-      - image: kanukhosla10/artemis-node-app-a:latest
+      - image: kanukhosla10/artemis-node-app-a:sha-01f0d4d
         name: nodejs-app-a
         imagePullPolicy: Always
         ports:
@@ -37,8 +37,8 @@ spec:
         # Port 4318 is the standard OTLP over HTTP endpoint
         # Your app sends traces here
         - name: OTEL_EXPORTER_JAEGER_ENDPOINT
-          value: "http://jaeger.tracing.svc.cluster.local:4318"
+          value: "http://jaeger.tracing.svc.cluster.local:4318/v1/traces"
         
-        
+
         - name: SERVICE_B_URI
           value: "http://nodejs-app-b-svc.artemis-nodejs-app-b"
