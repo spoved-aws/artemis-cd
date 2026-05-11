@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    job: node-api
+    app: nodejs-app-a-svc
+  name: nodejs-app-a-svc
+  namespace: artemis-nodejs-app-a
+spec:
+  ports:
+  - name: nodejs-app-a-port
+    port: 3001
+    protocol: TCP
+    targetPort: 3001
+  selector:
+    app: nodejs-app-a
+  type: NodePort
+

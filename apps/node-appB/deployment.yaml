@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: nodejs-app-b-deploy
+    # run: nodejs-app-b-deploy
+  name: nodejs-app-b-deploy
+  namespace: artemis-nodejs-app-b
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nodejs-app-b
+  template:
+    metadata:
+      labels:
+        app: nodejs-app-b
+    spec:
+      containers:
+      - image: kanukhosla10/artemis-node-app-b:latest
+        name: nodejs-app-b
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 3002
+        env:
+        - name: OTEL_EXPORTER_JAEGER_ENDPOINT
+          value: "http://jaeger-collector.tracing:14268/api/traces"

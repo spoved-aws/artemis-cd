@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: nodejs-app-a-deploy
+    # run: nodejs-app-a
+  name: nodejs-app-a-deploy
+  namespace: artemis-nodejs-app-a
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nodejs-app-a
+  template:
+    metadata:
+      labels:
+        app: nodejs-app-a
+    spec:
+      containers:
+      - image: kanukhosla10/artemis-node-app-a:latest
+        name: nodejs-app-a
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 3001
+        env:
+        # Logical service name shown in Jaeger traces
+        # This becomes the service identifier in the tracing UI
+        - name: OTEL_SERVICE_NAME
+          value: nodejs-app-a
+
+        # Specifies the OTLP transport format
+        # http/protobuf is the standard for OTLP HTTP exporters
+        - name: OTEL_EXPORTER_OTLP_PROTOCOL
+          value: http/protobuf
+        
+        # OTLP HTTP endpoint exposed by Jaeger collector
+        # Port 4318 is the standard OTLP over HTTP endpoint
+        # Your app sends traces here
+        - name: OTEL_EXPORTER_JAEGER_ENDPOINT
+          value: "http://jaeger.tracing.svc.cluster.local:4318"
+        
+        
+        - name: SERVICE_B_URI
+          value: "http://nodejs-app-b-svc.artemis-nodejs-app-b"

@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    job: node-api
+    app: nodejs-app-b-svc
+  name: nodejs-app-b-svc
+  namespace: artemis-nodejs-app-b
+spec:
+  ports:
+  - name: nodejs-app-b-port
+    port: 80
+    protocol: TCP
+    targetPort: 3002
+  selector:
+    app: nodejs-app-b
+  type: ClusterIP
